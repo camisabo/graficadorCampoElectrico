@@ -2,22 +2,21 @@ from clasePunto import Punto
 from claseCarga import Carga
 import matplotlib.pyplot as plt
 import numpy as np
+from claseGraficador import Graficador
 
-fig, ax = plt.subplots()  # Create a figure containing a single axes.
-ax.scatter([1, 2, 3, 4], [1, 4, 2, 3])  # Plot some data on the axes.
-
-plt.show()
 import matplotlib as mpl
 class plano:
 
     # Declaracion de variables
     __espaciado: float
     __matrizPuntos: list
-    __cargas: 'list[Carga]'
+    __cargas: list
+    __graf: Graficador
 
     def __init__(self, cargas: list, espaciado: float=1) -> None:
         self.__espaciado = espaciado
         self.__cargas = cargas
+        self.__graf = Graficador()
 
     def __mayorYMenorDistanciaEje(self, eje: str ="x") -> tuple:
         """mira todas las cargas y devuelve la cordenada menor y mayor en el eje especificado, por defecto el eje
@@ -28,11 +27,11 @@ class plano:
 
         eje = eje.lower()
         
-        for carga in self.__cargas:
+        for cargaAEvaluar in self.__cargas:
             if eje == "x":
-                valor = carga.cordenadaX
+                valor = cargaAEvaluar.cordenadaX
             elif eje == "y":
-                valor = carga.CordenadaY
+                valor = cargaAEvaluar.CordenadaY
             
             if maximo == None:
                 maximo = valor
@@ -48,7 +47,7 @@ class plano:
         """usando un porcentaje que por defecto es 10 crea, una lista de punntos que rodean a las cargas por un margen
         definido en base al porcentaje dado"""
 
-        matrizResultado: 'list[Punto]'
+        matrizResultado: 'list[Punto]' =[]
 
         distanciasEnX = self.__mayorYMenorDistanciaEje()
         distanciasEnY = self.__mayorYMenorDistanciaEje("y")
@@ -58,18 +57,22 @@ class plano:
         margenX = refernciaParaMargenX*porcentaje/100
         margenY = refernciaParaMargenY*porcentaje/100
         
+        rangoEnX =np.arange(distanciasEnX[0]-margenX, distanciasEnX[1]+margenX,self.__espaciado)
+        rangoEnY =np.arange(distanciasEnY[0]-margenY, distanciasEnY[1]+margenX,self.__espaciado)
 
-        rangoEnX =range((distanciasEnX[0]-margenX, distanciasEnX[1]+margenX,self.__espaciado))
-        rangoEnY =range((distanciasEnY[0]-margenY, distanciasEnY[1]+margenX,self.__espaciado))
 
         for cordenadaX in rangoEnX:
+            
             for cordenadaY in rangoEnY:
                 puntoActual = Punto(cordenadaX,cordenadaY)
                 for cargaEvaluada in self.__cargas:
                     puntoActual.guardarFuerza(cargaEvaluada)
                 matrizResultado.append(puntoActual)
-        
+
         return (matrizResultado)
     
-    def graficarPuntos():
+    def graficarPuntos(self, escala: float = 20, margenes: float = 1):
+        self.__matrizPuntos = self.__crearMatriz(100)
+        print(self.__matrizPuntos)
+        self.__graf.vectores(self.__matrizPuntos, escala, margenes)
         pass
