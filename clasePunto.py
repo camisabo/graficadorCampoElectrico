@@ -12,6 +12,7 @@ class Punto:
         self.__cordenadaX = cordenadaX_
         self.__cordenadaY = CordenadaY_
         self.__moduloFuerza:float = 0
+        self.__fuerzasSobreElPunto = []
 
     # Getter para cordenadaX
     @property
@@ -52,8 +53,8 @@ class Punto:
         """funcion que toma una carga como argumento y retorna la tupla ordenada de distancias con respecto a 
         la carga, si el valor es positivo el punto se encuentra a la inquierda y/o abajo de la carga evaluada"""
 
-        distanciaACargaX = cargaAEvaluar.cordenadaX-self.__cordenadaX
-        distanciaACargaY = cargaAEvaluar.CordenadaY-self.__cordenadaY
+        distanciaACargaX = self.__cordenadaX-cargaAEvaluar.cordenadaX
+        distanciaACargaY = self.__cordenadaY-cargaAEvaluar.CordenadaY
         return(distanciaACargaX,distanciaACargaY,round(sqrt(distanciaACargaX**2 + distanciaACargaY**2),3))
     
     def __calcularFuerzaEje(self, eje: str, cargaAEvaluar: Carga)->float:
@@ -71,9 +72,24 @@ class Punto:
         return resultado
     
     def guardarFuerza(self,cargaAEvaluar: Carga):
+        """funcion que guaeda en __fuerzasSobreElPunto las fuerzas sobre el punto"""
         fuerza = self.__calcularFuerzaEje("",cargaAEvaluar)
         fuerzaEnX = self.__calcularFuerzaEje("x",cargaAEvaluar)
         fuerzaEnY = self.__calcularFuerzaEje("y",cargaAEvaluar)
 
         self.__fuerzasSobreElPunto.append((fuerzaEnX, fuerzaEnY, fuerza))
         pass
+
+    def sumaDefuerzasEje(self, eje: str = "x")->float:
+        eje = eje.lower()
+        resultado: float = 0
+        if eje == "x":
+            referencia = 0
+        elif eje == "y":
+            referencia = 1
+        else:
+            referencia = 2
+
+        for fuerza in self.__fuerzasSobreElPunto:
+            resultado += fuerza[referencia]
+        return resultado
