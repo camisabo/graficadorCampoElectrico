@@ -60,7 +60,7 @@ class Punto:
         """Funcion que toma una carga, y calcula la fuerza ejercida sobre el punto actual, si el eje es diferente
         a 'x' o 'y' la funcion devolvera el modulo de la fuerza"""
         cordenadas = self.distanciaACarga(cargaAEvaluar)
-        resultado = cargaAEvaluar.cantidadCarga *   Punto.__cargaDeprueba * Carga.constante / cordenadas[2]
+        resultado: float = cargaAEvaluar.cantidadCarga *   Punto.__cargaDeprueba * Carga.constante / (cordenadas[2]**2)
         
         if eje == "x":
             resultado = resultado*(cordenadas[0]/cordenadas[2])
@@ -69,6 +69,7 @@ class Punto:
         
         resultado = round(resultado,3)
         return resultado
+    
     def guardarFuerza(self,cargaAEvaluar: Carga):
         fuerza = self.__calcularFuerzaEje("",cargaAEvaluar)
         fuerzaEnX = self.__calcularFuerzaEje("x",cargaAEvaluar)

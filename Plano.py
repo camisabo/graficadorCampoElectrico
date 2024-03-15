@@ -20,8 +20,10 @@ class plano:
         self.__cargas = cargas
 
     def __mayorYMenorDistanciaEje(self, eje: str ="x") -> tuple:
+        """mira todas las cargas y devuelve la cordenada menor y mayor en el eje especificado, por defecto el eje
+        esta en 'x' """
         minimo: float = None
-        maximo: float = none
+        maximo: float = None
         valor: float = 0
 
         eje = eje.lower()
@@ -43,6 +45,9 @@ class plano:
         return (minimo, maximo)
     
     def __crearMatriz(self, porcentaje: float = 10) ->list:
+        """usando un porcentaje que por defecto es 10 crea, una lista de punntos que rodean a las cargas por un margen
+        definido en base al porcentaje dado"""
+
         matrizResultado: 'list[Punto]'
 
         distanciasEnX = self.__mayorYMenorDistanciaEje()
@@ -60,6 +65,11 @@ class plano:
         for cordenadaX in rangoEnX:
             for cordenadaY in rangoEnY:
                 puntoActual = Punto(cordenadaX,cordenadaY)
+                for cargaEvaluada in self.__cargas:
+                    puntoActual.guardarFuerza(cargaEvaluada)
                 matrizResultado.append(puntoActual)
         
-        
+        return (matrizResultado)
+    
+    def graficarPuntos():
+        pass
