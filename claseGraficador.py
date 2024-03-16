@@ -40,7 +40,7 @@ class Graficador:
         
         normas = list(map(self.__norma, listaPuntos))
         normas = self.__normasMaxMin(normas)
-        print(normas)
+        #print(normas)
         for punto in listaPuntos:
             self.vector(punto, norma, normas, escala)
         plt.margins(x=margenenes, y=margenenes)  # márgenes del 10% en x e y

@@ -73,6 +73,6 @@ class plano:
     
     def graficarPuntos(self, norma: float, escala: float = 20, margenes: float = 1, porFuera: float = 6):
         self.__matrizPuntos = self.__crearMatriz(porFuera*100)
-        print(self.__matrizPuntos)
+        #print(self.__matrizPuntos)
         self.__graf.vectores(self.__matrizPuntos, norma, escala, margenes)
         pass
