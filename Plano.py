@@ -71,8 +71,8 @@ class plano:
 
         return (matrizResultado)
     
-    def graficarPuntos(self, escala: float = 20, margenes: float = 1):
-        self.__matrizPuntos = self.__crearMatriz(100)
+    def graficarPuntos(self, norma: float, escala: float = 20, margenes: float = 1):
+        self.__matrizPuntos = self.__crearMatriz(300)
         print(self.__matrizPuntos)
-        self.__graf.vectores(self.__matrizPuntos, escala, margenes)
+        self.__graf.vectores(self.__matrizPuntos, norma, escala, margenes)
         pass
