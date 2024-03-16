@@ -21,7 +21,7 @@ class Graficador:
         normalizador = self.__norma(puntoAGraficar)
         multiplicador = ((normalizador-normas[1])*100/(normas[0]-normas[1]))*norma/normalizador #regal de 3 con origen el la norma minima y normalizada con el normalizador
         
-        rojo = (normalizador - normas[1]) / (normas[0] - normas[1])
+        rojo = ((normalizador - normas[1]) / (normas[0] - normas[1]))**(1/5)
         verde = abs(1-rojo)
 
         colorAplicado = (rojo, verde, 0.2)
