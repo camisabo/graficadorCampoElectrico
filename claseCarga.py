@@ -5,7 +5,7 @@ class Carga:
     """Esta clase representa una carga q en un plano carteciano, por lo que tiene 
     como argumentos, su pocicion en el espacio asi como su valor de carga"""
 
-    constante = 9*10^2
+    constante = 9*10**2
 
     def __init__(self, cordenadaX_: float, CordenadaY_: float, cantidadCarga_: float):
         self.__cordenadaX = cordenadaX_
