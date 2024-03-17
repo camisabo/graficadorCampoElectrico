@@ -4,6 +4,8 @@ from clasePunto import Punto
 
 class Graficador:
 
+    __graf = None
+
     def __normasMaxMin(self, normas:'list[float]')->tuple:
         maximo = max(normas)
         minimo = min(normas)
@@ -37,11 +39,18 @@ class Graficador:
 
     def vectores(self, listaPuntos: 'list[Punto]', norma: float, escala: float = 20,
                   margenenes: float = 1):
-        
+        self.__graf = plt.figure() 
+
         normas = list(map(self.__norma, listaPuntos))
         normas = self.__normasMaxMin(normas)
         #print(normas)
         for punto in listaPuntos:
             self.vector(punto, norma, normas, escala)
         plt.margins(x=margenenes, y=margenenes)  # márgenes del 10% en x e y
-        plt.show()    
+
+    
+    def guardarImagen(self, rutaArchivo):
+        if not self.__graf.gca().has_data():
+            print("La figura está vacía")
+        else:
+            self.__graf.savefig(rutaArchivo, dpi=800)

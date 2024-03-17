@@ -3,6 +3,7 @@ from claseCarga import Carga
 import matplotlib.pyplot as plt
 import numpy as np
 from claseGraficador import Graficador
+from creadorCarpetas import creadorCarpetas
 
 import matplotlib as mpl
 class plano:
@@ -71,8 +72,15 @@ class plano:
 
         return (matrizResultado)
     
-    def graficarPuntos(self, norma: float, escala: float = 20, margenes: float = 1, porFuera: float = 6):
+    def graficarPuntos(self, norma: float, escala: float = 20, margenes: float = 1,
+                        porFuera: float = 6):
+        
         self.__matrizPuntos = self.__crearMatriz(porFuera*100)
         #print(self.__matrizPuntos)
         self.__graf.vectores(self.__matrizPuntos, norma, escala, margenes)
         pass
+
+    def guardarDatosEimagen(self, nombre:str):
+        carp = creadorCarpetas()
+        ruta = carp.guardarDatos(self.__matrizPuntos, nombre)
+        self.__graf.guardarImagen(ruta)
