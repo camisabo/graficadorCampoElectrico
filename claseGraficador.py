@@ -35,7 +35,7 @@ class Graficador:
         y_norm = y / normalizador * multiplicador
 
         plt.quiver(puntoAGraficar.cordenadaX, puntoAGraficar.CordenadaY, x_norm, y_norm,
-                    color=colorAplicado, scale=escala, linewidth=0.5)
+                    color=colorAplicado, scale=escala, linewidth=20)
 
     def vectores(self, listaPuntos: 'list[Punto]', norma: float, escala: float = 20,
                   margenenes: float = 1):
