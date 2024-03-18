@@ -15,6 +15,8 @@ El proyecto consta de las siguientes clases:
 - `creadorCarpetas`: Se utiliza para crear carpetas y archivos CSV que contienen datos sobre puntos y sus interacciones con cargas eléctricas. Puede crear una carpeta, crear un archivo CSV con los datos de una lista de puntos y guardar estos datos en un archivo.
 
 - `plano`: Se utiliza para representar un plano cartesiano que contiene cargas eléctricas y puntos. Puede calcular las distancias máximas y mínimas en un eje, crear una matriz de puntos que rodean las cargas, graficar los puntos y guardar los datos e imágenes resultantes.
+  
+`graficarPuntos`: Uno de los métodos más importantes de la clase `plano` es `graficarPuntos`. Este toma cuatro argumentos para poder personalizar la gráfica: `norma`, que es un multiplicador para la norma del vector, esto se muestra en la gráfica con vectores más largos; `escala`, que es la proporción entre unidades numéricas y su representación gráfica, por ejemplo, si `escala` es 5, entonces una flecha de longitud 1 en el gráfico representa 5 unidades de los datos; `margenes`, que es un valor entre 0 y 1 que simboliza el porcentaje del gráfico que no tiene `Puntos` que se muestra; y por último tenemos `porFuera`, que es un valor entre 0 y 1 que simboliza el porcentaje del gráfico que pintará puntos alejándose de las cargas, siendo 0, que los puntos se dejan de dibujar justo en las cargas."
 
 ## Uso
 
